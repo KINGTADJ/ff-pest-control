@@ -1,22 +1,89 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --primary-green: #2D5A27;
-  --primary-green-dark: #1e3d1a;
-  --accent-yellow: #FFD700;
-  --accent-orange: #FF6B35;
-  --text-dark: #1a1a1a;
-  --text-light: #ffffff;
-  --bg-light: #f8f9fa;
+  /* Brand Colors */
+  --brand-green: 120 53% 25%;
+  --brand-green-light: 120 40% 35%;
+  --brand-yellow: 51 100% 50%;
+  --brand-dark: 0 0% 10%;
+  
+  --radius: 0.75rem;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 120 53% 25%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 51 100% 50%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 120 10% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 51 100% 50%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0 84% 60%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 120 53% 25%;
+  --chart-1: 120 53% 25%;
+  --chart-2: 51 100% 50%;
+  --chart-3: 0 84% 60%;
+  --chart-4: 200 80% 50%;
+  --chart-5: 280 80% 50%;
 }
 
-@theme {
-  --color-primary: #2D5A27;
-  --color-primary-dark: #1e3d1a;
-  --color-accent: #FFD700;
-  --color-accent-orange: #FF6B35;
+.dark {
+  --background: 0 0% 7%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 10%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 120 53% 35%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 51 100% 50%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 51 100% 50%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0 62% 30%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 120 53% 35%;
 }
 
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -28,13 +95,78 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  color: var(--text-dark);
-  background-color: var(--text-light);
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
-/* Custom animations */
-@keyframes fadeInUp {
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* ============================================
+   MAGIC UI INSPIRED ANIMATIONS & EFFECTS
+   ============================================ */
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Gradient Border */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+              linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary))) border-box;
+  border: 2px solid transparent;
+}
+
+/* Glow Effect */
+.glow-green {
+  box-shadow: 
+    0 0 20px rgba(45, 90, 39, 0.3),
+    0 0 40px rgba(45, 90, 39, 0.2),
+    0 0 60px rgba(45, 90, 39, 0.1);
+}
+
+.glow-yellow {
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.3),
+    0 0 40px rgba(255, 215, 0, 0.2),
+    0 0 60px rgba(255, 215, 0, 0.1);
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(45, 90, 39, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(45, 90, 39, 0.8), 0 0 60px rgba(45, 90, 39, 0.4);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Fade In Up */
+@keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -45,62 +177,181 @@ body {
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(45, 90, 39, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(45, 90, 39, 0.8);
-  }
-}
-
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fade-in-up 0.6s ease-out forwards;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+/* Stagger Animation Classes */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* Hero gradient */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Spin Slow */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Gradient Text */
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blur Backdrop */
+.blur-backdrop {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ============================================
+   HERO & SECTIONS
+   ============================================ */
+
 .hero-gradient {
-  background: linear-gradient(135deg, #2D5A27 0%, #1e3d1a 50%, #0f1f0d 100%);
+  background: linear-gradient(135deg, 
+    hsl(120 53% 20%) 0%, 
+    hsl(120 53% 15%) 50%, 
+    hsl(120 53% 10%) 100%
+  );
 }
 
-/* CTA button styles */
+.hero-mesh {
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(51, 100%, 50%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(120, 53%, 35%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(51, 100%, 50%, 0.1) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(120, 53%, 25%, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(51, 100%, 50%, 0.1) 0px, transparent 50%);
+}
+
+/* Grid Pattern */
+.grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+}
+
+/* Noise Texture */
+.noise-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
 .btn-primary {
-  @apply bg-[#2D5A27] text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#1e3d1a] hover:scale-105 hover:shadow-xl;
+  @apply bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-base 
+         transition-all duration-300 hover:shadow-xl hover:shadow-primary/25 
+         hover:-translate-y-0.5 active:translate-y-0;
 }
 
 .btn-secondary {
-  @apply bg-[#FFD700] text-[#1a1a1a] px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#e6c200] hover:scale-105 hover:shadow-xl;
+  @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-base 
+         transition-all duration-300 hover:shadow-xl hover:shadow-secondary/25 
+         hover:-translate-y-0.5 active:translate-y-0;
 }
 
 .btn-outline {
-  @apply border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-[#2D5A27];
+  @apply border-2 border-white/50 text-white px-8 py-4 rounded-xl font-semibold text-base 
+         transition-all duration-300 hover:bg-white hover:text-primary 
+         hover:-translate-y-0.5 active:translate-y-0 backdrop-blur-sm;
 }
 
-/* Card styles */
+/* ============================================
+   CARDS
+   ============================================ */
+
 .service-card {
-  @apply bg-white rounded-2xl p-6 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+  @apply bg-card rounded-2xl p-6 border border-border/50
+         transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 
+         hover:-translate-y-2 hover:border-primary/20;
 }
 
-/* Section padding */
+.glass-card {
+  @apply bg-white/80 dark:bg-black/40 backdrop-blur-xl rounded-2xl border border-white/20;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
 .section-padding {
-  @apply py-16 md:py-24 px-4 md:px-8;
+  @apply py-20 md:py-32 px-4 md:px-8;
 }
 
-/* Container */
 .container-custom {
   @apply max-w-7xl mx-auto px-4 md:px-8;
 }
 
-/* Phone link styles */
-a[href^="tel:"] {
-  @apply font-semibold text-[#2D5A27] hover:text-[#1e3d1a] transition-colors;
+/* ============================================
+   WHATSAPP FLOAT BUTTON
+   ============================================ */
+
+.whatsapp-float {
+  @apply fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full 
+         shadow-2xl z-50 transition-all duration-300 
+         hover:scale-110 hover:shadow-[0_0_30px_rgba(37,211,102,0.5)];
 }
 
-/* WhatsApp button */
-.whatsapp-float {
-  @apply fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(37,211,102,0.5)];
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* ============================================
+   SELECTION STYLING
+   ============================================ */
+
+::selection {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
 }
