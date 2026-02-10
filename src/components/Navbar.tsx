@@ -4,25 +4,28 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Mail, MapPin, X, Menu, Bug } from 'lucide-react';
-
-const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Products', href: '/products' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-];
-
-const contactInfo = [
-  { icon: Phone, label: 'Call', value: '+971 56 499 9912', href: 'tel:+971564999912' },
-  { icon: Mail, label: 'Email', value: 'info@ffpestcontrol.ae', href: 'mailto:info@ffpestcontrol.ae' },
-  { icon: MapPin, label: 'Visit', value: 'Ajman, UAE', href: '/contact' },
-];
+import { useLanguage } from '@/context/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activePopup, setActivePopup] = useState<number | null>(null);
+  const { t, isRTL } = useLanguage();
+
+  const navLinks = [
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.services'), href: '/services' },
+    { name: t('nav.products'), href: '/products' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.contact'), href: '/contact' },
+  ];
+
+  const contactInfo = [
+    { icon: Phone, label: t('nav.call'), value: '+971 56 499 9912', href: 'tel:+971564999912' },
+    { icon: Mail, label: t('nav.email'), value: 'info@ffpestcontrol.ae', href: 'mailto:info@ffpestcontrol.ae' },
+    { icon: MapPin, label: t('nav.visit'), value: 'Ajman, UAE', href: '/contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -39,10 +42,10 @@ export default function Navbar() {
             : 'bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/5'
         }`}>
           <div className="px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
+            <div className={`flex items-center justify-between h-16 ${isRTL ? 'flex-row-reverse' : ''}`}>
             
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" className={`flex items-center gap-2 group ${isRTL ? 'flex-row-reverse' : ''}`}>
               <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
                 <Bug className="w-4 h-4 text-yellow-400" />
               </div>
@@ -55,7 +58,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className={`hidden lg:flex items-center gap-8 ${isRTL ? 'flex-row-reverse' : ''}`}>
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -69,8 +72,11 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Contact Buttons */}
-            <div className="hidden lg:flex items-center gap-2">
+            {/* Contact Buttons + Language Switcher */}
+            <div className={`hidden lg:flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              {/* Language Switcher */}
+              <LanguageSwitcher isScrolled={isScrolled} />
+              
               {contactInfo.map((info, i) => (
                 <div key={i} className="relative">
                   <button
@@ -93,13 +99,13 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 8, scale: 0.95 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute top-full right-0 mt-2 p-4 bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[180px] z-50"
+                        className={`absolute top-full mt-2 p-4 bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[180px] z-50 ${isRTL ? 'left-0' : 'right-0'}`}
                       >
                         <div className="text-[10px] text-green-600 uppercase tracking-widest mb-1">{info.label}</div>
                         <a href={info.href} className="text-[#0a1a0f] font-medium text-sm hover:text-green-600 transition-colors">
                           {info.value}
                         </a>
-                        <div className="absolute -top-2 right-4 w-3 h-3 bg-white border-l border-t border-gray-100 rotate-45" />
+                        <div className={`absolute -top-2 w-3 h-3 bg-white border-l border-t border-gray-100 rotate-45 ${isRTL ? 'left-4' : 'right-4'}`} />
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -108,9 +114,9 @@ export default function Navbar() {
 
               <a
                 href="tel:+971564999912"
-                className="ml-2 px-5 py-2 bg-yellow-500 text-black text-sm font-bold rounded-full hover:bg-yellow-400 transition-all hover:shadow-lg hover:shadow-yellow-500/25"
+                className={`px-5 py-2 bg-yellow-500 text-black text-sm font-bold rounded-full hover:bg-yellow-400 transition-all hover:shadow-lg hover:shadow-yellow-500/25 ${isRTL ? 'mr-2' : 'ml-2'}`}
               >
-                Call Now
+                {t('nav.callNow')}
               </a>
             </div>
 
@@ -139,35 +145,45 @@ export default function Navbar() {
           >
             <div className="absolute inset-0 bg-[#0a1a0f]/95 backdrop-blur-xl" onClick={() => setIsMenuOpen(false)} />
             <motion.div
-              initial={{ x: '100%' }}
+              initial={{ x: isRTL ? '-100%' : '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              exit={{ x: isRTL ? '-100%' : '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="absolute right-0 top-0 bottom-0 w-80 bg-[#0a1a0f] p-8 pt-24"
+              className={`absolute top-0 bottom-0 w-80 bg-[#0a1a0f] p-8 pt-24 ${isRTL ? 'left-0' : 'right-0'}`}
             >
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ x: 30, opacity: 0 }}
+                  initial={{ x: isRTL ? -30 : 30, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: i * 0.1 }}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block py-4 text-2xl text-white hover:text-yellow-400 border-b border-white/10"
+                    className={`block py-4 text-2xl text-white hover:text-yellow-400 border-b border-white/10 ${isRTL ? 'text-right' : 'text-left'}`}
                   >
                     {link.name}
                   </Link>
                 </motion.div>
               ))}
+              
+              {/* Mobile Language Switcher */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.35 }}
+              >
+                <LanguageSwitcher variant="mobile" />
+              </motion.div>
+              
               <motion.a
                 href="tel:+971564999912"
                 onClick={() => setIsMenuOpen(false)}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="block mt-8 py-4 bg-yellow-500 text-black font-bold text-center rounded-xl"
+                className="block mt-4 py-4 bg-yellow-500 text-black font-bold text-center rounded-xl"
               >
                 <Phone className="w-5 h-5 inline mr-2" />
                 +971 56 499 9912
