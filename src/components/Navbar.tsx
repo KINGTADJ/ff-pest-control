@@ -7,16 +7,16 @@ import { Phone, Mail, MapPin, X, Menu, Bug } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Services', href: '#services' },
+  { name: 'Services', href: '/services' },
   { name: 'Products', href: '/products' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 const contactInfo = [
   { icon: Phone, label: 'Call', value: '+971 56 499 9912', href: 'tel:+971564999912' },
   { icon: Mail, label: 'Email', value: 'info@ffpestcontrol.ae', href: 'mailto:info@ffpestcontrol.ae' },
-  { icon: MapPin, label: 'Visit', value: 'Ajman, UAE', href: '#contact' },
+  { icon: MapPin, label: 'Visit', value: 'Ajman, UAE', href: '/contact' },
 ];
 
 export default function Navbar() {
