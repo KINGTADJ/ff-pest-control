@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import About from '@/components/About';
+import Founders from '@/components/Founders';
 import Products from '@/components/Products';
 import Testimonials from '@/components/Testimonials';
 import CTA from '@/components/CTA';
@@ -35,6 +36,7 @@ export default function Home() {
         <Hero />
         <Services />
         <About />
+        <Founders variant="home" />
         <Products />
         <Testimonials />
         <CTA />

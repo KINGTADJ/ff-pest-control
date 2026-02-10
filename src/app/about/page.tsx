@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import Founders from '@/components/Founders';
 import { Shield, Clock, Award, Users, Phone } from 'lucide-react';
 
 const values = [
@@ -178,6 +179,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Founders Section */}
+      <Founders variant="about" />
 
       {/* Timeline */}
       <section className="py-20 bg-[#0a1a0f]">
