@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Linkedin, Mail } from 'lucide-react';
 
 const founders = [
   {
@@ -58,26 +57,23 @@ export default function Founders({ variant = 'home' }: FoundersProps) {
               className="group"
             >
               <div className={`h-full rounded-3xl overflow-hidden ${isHome ? 'bg-white/5 border border-white/10' : 'bg-gray-50 border border-gray-100'} hover:shadow-2xl transition-all duration-500`}>
-                {/* Image */}
-                <div className="relative h-80 overflow-hidden">
-                  <Image
-                    src={founder.image}
-                    alt={founder.name}
-                    fill
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${isHome ? 'from-[#0a1a0f]' : 'from-gray-900'} via-transparent to-transparent`} />
-                  
-                  {/* Role Badge */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <span className="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
-                      {founder.role}
-                    </span>
+                {/* Image - Full visible, no crop */}
+                <div className={`relative ${isHome ? 'bg-gradient-to-b from-white/5 to-transparent' : 'bg-gray-100'} flex items-center justify-center p-4`}>
+                  <div className="relative w-full aspect-[3/4] max-h-[400px]">
+                    <Image
+                      src={founder.image}
+                      alt={founder.name}
+                      fill
+                      className="object-contain group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
                 </div>
                 
                 {/* Content */}
                 <div className="p-6">
+                  <span className="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full mb-3">
+                    {founder.role}
+                  </span>
                   <h3 className={`text-2xl font-bold ${isHome ? 'text-white' : 'text-[#0a1a0f]'} mb-3`}>
                     {founder.name}
                   </h3>
