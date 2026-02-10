@@ -8,19 +8,19 @@ import { Phone, MessageCircle, Package, Truck, CreditCard, Users } from 'lucide-
 const products = [
   {
     id: 1,
-    name: 'MAGIC Cockroach Killer Spray (Arabic)',
-    nameAr: 'MAGIC قاتل الصراصير',
-    description: 'قوة قاتلة وسريعة - Powerful and fast killing formula',
+    name: 'MAGIC Cockroach Killer Spray (Arabic Label)',
+    nameAr: 'Powerful & Fast Killing Formula',
+    description: 'Professional-grade cockroach killer with Arabic packaging for local market',
     size: '250ml',
-    features: ['فعالية قوية - Powerful Effectiveness', 'لحماية المنزل - Home Protection', 'يقضي فوراً - Instant Kill'],
+    features: ['Powerful Effectiveness', 'Home Protection', 'Kills Instantly'],
     image: '/images/product-arabic.jpg',
     badge: 'Best Seller'
   },
   {
     id: 2,
-    name: 'MAGIC Cockroach Killer Spray (English)',
-    nameAr: 'MAGIC Cockroach Killer',
-    description: 'Instant Kill - Powerful Formula that Kills on Contact',
+    name: 'MAGIC Cockroach Killer Spray (English Label)',
+    nameAr: 'Instant Kill Formula',
+    description: 'Powerful formula that kills cockroaches on contact',
     size: '250ml',
     features: ['Powerful Formula', 'Kills on Contact', 'Eliminates Cockroaches'],
     image: '/images/product-english.jpg',

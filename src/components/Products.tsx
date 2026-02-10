@@ -13,14 +13,14 @@ gsap.registerPlugin(ScrollTrigger);
 const products = [
   { 
     image: '/images/product-arabic.jpg', 
-    name: 'MAGIC قاتل الصراصير', 
-    desc: 'قوة قاتلة وسريعة - 250ml', 
-    features: ['فعالية قوية', 'لحماية المنزل', 'يقضي فوراً'] 
+    name: 'MAGIC Cockroach Killer (Arabic Label)', 
+    desc: 'Powerful & Fast Killing Formula - 250ml', 
+    features: ['Powerful Effectiveness', 'Home Protection', 'Kills Instantly'] 
   },
   { 
     image: '/images/product-english.jpg', 
     name: 'MAGIC Cockroach Killer', 
-    desc: 'Instant Kill - 250ml', 
+    desc: 'Instant Kill Formula - 250ml', 
     features: ['Powerful Formula', 'Kills on Contact', 'Eliminates Cockroaches'] 
   },
 ];
