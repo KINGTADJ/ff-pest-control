@@ -121,8 +121,13 @@ export default function ProductsPage() {
                   </div>
                 )}
                 <div className="p-8">
-                  <div className="relative h-72 mb-6 group-hover:scale-105 transition-transform duration-300 bg-white rounded-2xl flex items-center justify-center">
-                    <div className="text-8xl">🧴</div>
+                  <div className="relative h-72 mb-6 group-hover:scale-105 transition-transform duration-300 bg-white rounded-2xl overflow-hidden">
+                    <Image 
+                      src={product.image} 
+                      alt={product.name} 
+                      fill 
+                      className="object-contain p-4" 
+                    />
                   </div>
                   <h3 className="text-xl font-bold text-[#0a1a0f] mb-2">{product.name}</h3>
                   <p className="text-green-600 font-semibold mb-2">{product.nameAr}</p>
