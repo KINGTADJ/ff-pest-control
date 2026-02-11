@@ -4,9 +4,8 @@ import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import { Clock, User, ArrowLeft, Phone, MessageCircle, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Clock, User, ArrowLeft, Phone, MessageCircle, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { blogPosts } from '../posts';
-import ReactMarkdown from 'react-markdown';
 
 export default function BlogPostPage() {
   const params = useParams();
@@ -18,7 +17,7 @@ export default function BlogPostPage() {
       <PageLayout>
         <section className="py-32 text-center">
           <h1 className="text-4xl font-bold text-[#0a1a0f] mb-4">Article Not Found</h1>
-          <p className="text-gray-600 mb-8">The article you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-8">The article you&apos;re looking for doesn&apos;t exist.</p>
           <Link href="/blog" className="text-green-600 font-semibold hover:underline">
             ← Back to Blog
           </Link>
@@ -31,6 +30,78 @@ export default function BlogPostPage() {
   const relatedPosts = blogPosts
     .filter(p => p.category === post.category && p.slug !== post.slug)
     .slice(0, 3);
+
+  // Simple markdown-like rendering
+  const renderContent = (content: string) => {
+    const lines = content.split('\n');
+    return lines.map((line, i) => {
+      const trimmed = line.trim();
+      
+      // Headings
+      if (trimmed.startsWith('# ')) {
+        return <h1 key={i} className="text-3xl font-bold text-[#0a1a0f] mt-8 mb-4">{trimmed.slice(2)}</h1>;
+      }
+      if (trimmed.startsWith('## ')) {
+        return <h2 key={i} className="text-2xl font-bold text-[#0a1a0f] mt-6 mb-3">{trimmed.slice(3)}</h2>;
+      }
+      if (trimmed.startsWith('### ')) {
+        return <h3 key={i} className="text-xl font-bold text-[#0a1a0f] mt-4 mb-2">{trimmed.slice(4)}</h3>;
+      }
+      
+      // List items
+      if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+        return <li key={i} className="ml-6 text-gray-700 mb-1">{trimmed.slice(2)}</li>;
+      }
+      if (/^\d+\.\s/.test(trimmed)) {
+        return <li key={i} className="ml-6 text-gray-700 mb-1 list-decimal">{trimmed.replace(/^\d+\.\s/, '')}</li>;
+      }
+      
+      // Bold text - simple replacement
+      if (trimmed.includes('**')) {
+        const parts = trimmed.split(/\*\*(.*?)\*\*/g);
+        return (
+          <p key={i} className="text-gray-700 mb-4 leading-relaxed">
+            {parts.map((part, j) => j % 2 === 1 ? <strong key={j}>{part}</strong> : part)}
+          </p>
+        );
+      }
+      
+      // Links - convert [text](/url) to links
+      if (trimmed.includes('[') && trimmed.includes('](/')) {
+        const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        const parts = [];
+        let lastIndex = 0;
+        let match;
+        
+        while ((match = linkRegex.exec(trimmed)) !== null) {
+          if (match.index > lastIndex) {
+            parts.push(trimmed.slice(lastIndex, match.index));
+          }
+          const href = match[2];
+          const isInternal = href.startsWith('/');
+          if (isInternal) {
+            parts.push(<Link key={match.index} href={href} className="text-green-600 hover:underline">{match[1]}</Link>);
+          } else {
+            parts.push(<a key={match.index} href={href} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">{match[1]}</a>);
+          }
+          lastIndex = match.index + match[0].length;
+        }
+        if (lastIndex < trimmed.length) {
+          parts.push(trimmed.slice(lastIndex));
+        }
+        
+        return <p key={i} className="text-gray-700 mb-4 leading-relaxed">{parts}</p>;
+      }
+      
+      // Empty line
+      if (!trimmed) {
+        return <div key={i} className="h-2" />;
+      }
+      
+      // Regular paragraph
+      return <p key={i} className="text-gray-700 mb-4 leading-relaxed">{trimmed}</p>;
+    });
+  };
 
   return (
     <PageLayout>
@@ -75,21 +146,10 @@ export default function BlogPostPage() {
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-4 gap-12">
             {/* Main Content */}
-            <article className="lg:col-span-3 prose prose-lg max-w-none prose-headings:text-[#0a1a0f] prose-a:text-green-600 prose-strong:text-[#0a1a0f]">
-              <ReactMarkdown
-                components={{
-                  a: ({ node, ...props }) => {
-                    const href = props.href || '';
-                    const isInternal = href.startsWith('/');
-                    if (isInternal) {
-                      return <Link href={href} className="text-green-600 hover:underline">{props.children}</Link>;
-                    }
-                    return <a {...props} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">{props.children}</a>;
-                  },
-                }}
-              >
-                {post.content}
-              </ReactMarkdown>
+            <article className="lg:col-span-3">
+              <div className="prose-content">
+                {renderContent(post.content)}
+              </div>
               
               {/* Tags */}
               <div className="mt-12 pt-8 border-t border-gray-200">
