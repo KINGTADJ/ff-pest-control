@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import { Clock, User, ArrowRight, Search } from 'lucide-react';
+import { Clock, ArrowRight, Search } from 'lucide-react';
 import { blogPosts, categories } from './posts';
 
 export default function BlogPage() {
@@ -25,29 +24,24 @@ export default function BlogPage() {
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a1a0f] via-[#0d2615] to-[#0a1a0f]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Pest Control <span className="text-yellow-400">Blog</span>
-            </h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
-              Expert tips, guides, and insights about pest control in UAE. Learn how to protect your home and business from pests.
-            </p>
-            
-            {/* Search */}
-            <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-yellow-400"
-              />
-            </div>
-          </motion.div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            Pest Control <span className="text-yellow-400">Blog</span>
+          </h1>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
+            Expert tips, guides, and insights about pest control in UAE. Learn how to protect your home and business from pests.
+          </p>
+          
+          {/* Search */}
+          <div className="max-w-xl mx-auto relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search articles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-yellow-400"
+            />
+          </div>
         </div>
       </section>
 
@@ -75,16 +69,12 @@ export default function BlogPage() {
       {/* Blog Grid */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <p className="text-center text-gray-600 mb-8">Showing {filteredPosts.length} articles</p>
+          
           {filteredPosts.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post, index) => (
-                <motion.article
-                  key={post.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                >
+              {filteredPosts.map((post) => (
+                <article key={post.slug}>
                   <Link href={`/blog/${post.slug}`} className="group block">
                     <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-green-500/30 transition-all h-full flex flex-col">
                       {/* Image Placeholder */}
@@ -124,7 +114,7 @@ export default function BlogPage() {
                       </div>
                     </div>
                   </Link>
-                </motion.article>
+                </article>
               ))}
             </div>
           ) : (
