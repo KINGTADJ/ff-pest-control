@@ -1,193 +1,163 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import { Clock, ArrowRight } from 'lucide-react';
-
-const blogPosts = [
-  {
-    slug: 'how-to-prevent-cockroach-infestation',
-    title: 'How to Prevent Cockroach Infestation in Your Home',
-    excerpt: 'Learn the best practices to keep cockroaches away from your home. Our expert tips will help you maintain a pest-free environment.',
-    date: 'Feb 10, 2026',
-    readTime: '5 min read',
-    category: 'Prevention',
-    icon: '🪳'
-  },
-  {
-    slug: 'signs-of-termite-damage',
-    title: 'Signs of Termite Damage You Shouldn\'t Ignore',
-    excerpt: 'Termites can cause serious structural damage. Learn to identify the early warning signs before it\'s too late.',
-    date: 'Feb 8, 2026',
-    readTime: '4 min read',
-    category: 'Termites',
-    icon: '🏠'
-  },
-  {
-    slug: 'bed-bug-travel-tips',
-    title: 'How to Avoid Bringing Bed Bugs Home from Travel',
-    excerpt: 'Traveling can expose you to bed bugs. Here\'s how to protect yourself and prevent an infestation.',
-    date: 'Feb 5, 2026',
-    readTime: '6 min read',
-    category: 'Bed Bugs',
-    icon: '🛏️'
-  },
-  {
-    slug: 'pet-safe-pest-control',
-    title: 'Pet-Safe Pest Control Solutions',
-    excerpt: 'Keep your furry friends safe while eliminating pests. Discover pet-friendly pest control methods.',
-    date: 'Feb 1, 2026',
-    readTime: '4 min read',
-    category: 'Safety',
-    icon: '🐕'
-  },
-  {
-    slug: 'why-diy-pest-control-fails',
-    title: 'Why DIY Pest Control Often Fails',
-    excerpt: 'Save time and money by understanding why professional pest control is often the better choice.',
-    date: 'Jan 28, 2026',
-    readTime: '5 min read',
-    category: 'Tips',
-    icon: '💡'
-  },
-  {
-    slug: 'seasonal-pest-guide-uae',
-    title: 'Seasonal Pest Guide for UAE Residents',
-    excerpt: 'Different seasons bring different pests. Learn what to expect throughout the year in the UAE.',
-    date: 'Jan 25, 2026',
-    readTime: '7 min read',
-    category: 'Guides',
-    icon: '📅'
-  },
-];
+import { Clock, User, ArrowRight, Search } from 'lucide-react';
+import { blogPosts, categories } from './posts';
 
 export default function BlogPage() {
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
+    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <PageLayout>
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      {/* Hero */}
+      <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a1a0f] via-[#0d2615] to-[#0a1a0f]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0a1a0f]/50" />
-        
-        {/* Light rays */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div 
-            className="absolute top-0 left-[25%] w-[3px] h-full bg-gradient-to-b from-green-400/30 via-green-400/10 to-transparent"
-            style={{ transform: 'rotate(10deg)', transformOrigin: 'top' }}
-            animate={{ opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute top-0 right-[35%] w-[4px] h-full bg-gradient-to-b from-yellow-400/40 via-yellow-400/10 to-transparent"
-            style={{ transform: 'rotate(-8deg)', transformOrigin: 'top' }}
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 backdrop-blur-xl border border-green-400/20 rounded-full mb-6">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-green-400 text-sm">Blog & Resources</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Pest Control<br />
-              <span className="text-yellow-400">Tips & Guides</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Pest Control <span className="text-yellow-400">Blog</span>
             </h1>
-            <p className="text-white/60 text-lg max-w-xl">
-              Expert advice and helpful tips to keep your home and business pest-free. Learn from the professionals at F & F Pest Control.
+            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
+              Expert tips, guides, and insights about pest control in UAE. Learn how to protect your home and business from pests.
             </p>
+            
+            {/* Search */}
+            <div className="max-w-xl mx-auto relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-yellow-400"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Blog Grid */}
-      <section className="py-20 bg-white">
+      {/* Category Filter */}
+      <section className="sticky top-20 z-30 bg-white border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <motion.article
-                key={post.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
+          <div className="flex gap-2 overflow-x-auto py-4 scrollbar-hide">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                  activeCategory === category 
+                    ? 'bg-green-600 text-white' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
               >
-                <div className="h-full bg-gray-50 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
-                  {/* Icon Header */}
-                  <div className="h-48 bg-gradient-to-br from-green-500/10 to-yellow-500/10 flex items-center justify-center">
-                    <div className="text-7xl group-hover:scale-110 transition-transform duration-300">
-                      {post.icon}
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    {/* Category & Date */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="px-3 py-1 bg-green-500/10 text-green-600 text-xs font-bold rounded-full">
-                        {post.category}
-                      </span>
-                      <div className="flex items-center gap-1 text-gray-400 text-xs">
-                        <Clock className="w-3 h-3" />
-                        {post.readTime}
-                      </div>
-                    </div>
-                    
-                    {/* Title */}
-                    <h2 className="text-xl font-bold text-[#0a1a0f] mb-3 group-hover:text-green-600 transition-colors">
-                      {post.title}
-                    </h2>
-                    
-                    {/* Excerpt */}
-                    <p className="text-gray-500 text-sm mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    
-                    {/* Footer */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                      <span className="text-gray-400 text-xs">{post.date}</span>
-                      <span className="flex items-center gap-1 text-green-600 text-sm font-medium group-hover:gap-2 transition-all">
-                        Read More
-                        <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </motion.article>
+                {category}
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Newsletter CTA */}
-      <section className="py-20 bg-[#0a1a0f]">
+      {/* Blog Grid */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {filteredPosts.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
+                <motion.article
+                  key={post.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <Link href={`/blog/${post.slug}`} className="group block">
+                    <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-green-500/30 transition-all h-full flex flex-col">
+                      {/* Image Placeholder */}
+                      <div className="h-48 bg-gradient-to-br from-green-500/20 to-yellow-500/20 flex items-center justify-center">
+                        <span className="text-6xl">📝</span>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="p-6 flex-1 flex flex-col">
+                        {/* Category */}
+                        <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full mb-3 w-fit">
+                          {post.category}
+                        </span>
+                        
+                        {/* Title */}
+                        <h2 className="text-xl font-bold text-[#0a1a0f] mb-3 group-hover:text-green-600 transition-colors line-clamp-2">
+                          {post.title}
+                        </h2>
+                        
+                        {/* Excerpt */}
+                        <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">
+                          {post.excerpt}
+                        </p>
+                        
+                        {/* Meta */}
+                        <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-100">
+                          <div className="flex items-center gap-4">
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-4 h-4" />
+                              {post.readTime}
+                            </span>
+                          </div>
+                          <span className="flex items-center gap-1 text-green-600 font-medium group-hover:gap-2 transition-all">
+                            Read More <ArrowRight className="w-4 h-4" />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.article>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">No articles found matching your search.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-gradient-to-br from-green-600 to-green-700">
         <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Get Pest Control <span className="text-yellow-400">Tips</span>
-            </h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-              Follow us on social media for the latest pest control tips, news, and special offers.
-            </p>
-            <a 
-              href="https://wa.me/971522141349" 
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#1da851] transition-colors"
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Need Professional Pest Control?
+          </h2>
+          <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+            Our expert team is ready to help you with all your pest control needs.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-yellow-500 text-black font-bold rounded-full hover:bg-yellow-400 transition-colors"
             >
-              Follow Us on WhatsApp
-            </a>
-          </motion.div>
+              Get Free Quote
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-green-700 font-bold rounded-full hover:bg-gray-100 transition-colors"
+            >
+              View Services
+            </Link>
+          </div>
         </div>
       </section>
     </PageLayout>
