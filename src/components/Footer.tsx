@@ -115,9 +115,9 @@ export default function Footer() {
             <h4 className="text-white font-bold text-lg mb-6">{t('footer.contactUs')}</h4>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+971564999912" className={`flex items-center gap-3 text-white/50 hover:text-white transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <a href="tel:+971522141349" className={`flex items-center gap-3 text-white/50 hover:text-white transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}>
                   <Phone className="w-5 h-5 text-green-400" />
-                  +971 56 499 9912
+                  +971 52 214 1349
                 </a>
               </li>
               <li>
@@ -136,7 +136,7 @@ export default function Footer() {
 
             {/* WhatsApp */}
             <motion.a
-              href="https://wa.me/971564999912"
+              href="https://wa.me/971522141349"
               className={`mt-6 inline-flex items-center gap-2 px-5 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -165,7 +165,7 @@ export default function Footer() {
 
       {/* WhatsApp Float Button */}
       <motion.a
-        href="https://wa.me/971564999912"
+        href="https://wa.me/971522141349"
         className={`fixed bottom-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/40 ${isRTL ? 'left-6' : 'right-6'}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

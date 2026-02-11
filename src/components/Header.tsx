@@ -25,9 +25,9 @@ export default function Header() {
       <div className="bg-green-800 text-white py-2 px-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
           <div className="flex items-center gap-4 mb-2 sm:mb-0">
-            <a href="tel:+971564999912" className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
+            <a href="tel:+971522141349" className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
               <Phone className="h-4 w-4" />
-              <span className="hidden sm:inline">+971 56 499 9912</span>
+              <span className="hidden sm:inline">+971 52 214 1349</span>
             </a>
             <span className="hidden sm:inline text-white/40">|</span>
             <a href="tel:+971522141349" className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
@@ -78,7 +78,7 @@ export default function Header() {
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
               <Button asChild className="bg-green-700 hover:bg-green-800 rounded-xl shadow-lg shadow-green-700/20 hover:shadow-green-700/40 transition-all">
-                <a href="tel:+971564999912" className="flex items-center gap-2">
+                <a href="tel:+971522141349" className="flex items-center gap-2">
                   <Phone className="h-4 w-4" />
                   Get Free Quote
                 </a>
@@ -125,9 +125,9 @@ export default function Header() {
                   {/* Mobile Menu Footer */}
                   <div className="p-6 bg-gray-50 border-t">
                     <Button asChild className="w-full bg-green-700 hover:bg-green-800 rounded-xl py-6">
-                      <a href="tel:+971564999912" className="flex items-center justify-center gap-2">
+                      <a href="tel:+971522141349" className="flex items-center justify-center gap-2">
                         <Phone className="h-5 w-5" />
-                        Call: +971 56 499 9912
+                        Call: +971 52 214 1349
                       </a>
                     </Button>
                   </div>

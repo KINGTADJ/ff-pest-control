@@ -244,7 +244,7 @@ export default function Services() {
                 </li>
               </ul>
               <a
-                href="tel:+971564999912"
+                href="tel:+971522141349"
                 className={`relative z-10 inline-flex items-center gap-2 px-5 py-3 bg-yellow-500 text-black font-bold text-sm rounded-full hover:bg-yellow-400 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
               >
                 <Phone className="w-4 h-4" />

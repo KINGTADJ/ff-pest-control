@@ -90,17 +90,17 @@ export default function CTA() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.a
-              href="tel:+971564999912"
+              href="tel:+971522141349"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl shadow-yellow-500/30 hover:bg-yellow-400 transition-all"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
             >
               <Phone className="w-5 h-5" />
-              Call: +971 56 499 9912
+              Call: +971 52 214 1349
             </motion.a>
 
             <motion.a
-              href="https://wa.me/971564999912"
+              href="https://wa.me/971522141349"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-xl border border-white/20 text-white font-bold text-lg rounded-full hover:bg-white hover:text-green-800 transition-all"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}

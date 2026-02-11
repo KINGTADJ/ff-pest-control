@@ -140,14 +140,14 @@ export default function ServicePage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="tel:+971564999912" 
+                href="tel:+971522141349" 
                 className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-500 text-black font-bold rounded-full hover:bg-yellow-400 transition-colors"
               >
                 <Phone className="w-5 h-5" />
                 Get Free Quote
               </a>
               <a 
-                href="https://wa.me/971564999912" 
+                href="https://wa.me/971522141349" 
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-green-700 transition-colors"
               >
                 <MessageCircle className="w-5 h-5" />
@@ -299,14 +299,14 @@ export default function ServicePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="tel:+971564999912" 
+                href="tel:+971522141349" 
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-yellow-500 text-black font-bold rounded-full hover:bg-yellow-400 transition-colors"
               >
                 <Phone className="w-5 h-5" />
-                +971 56 499 9912
+                +971 52 214 1349
               </a>
               <a 
-                href="https://wa.me/971564999912" 
+                href="https://wa.me/971522141349" 
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#1da851] transition-colors"
               >
                 <MessageCircle className="w-5 h-5" />

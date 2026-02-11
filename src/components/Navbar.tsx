@@ -22,7 +22,7 @@ export default function Navbar() {
   ];
 
   const contactInfo = [
-    { icon: Phone, label: t('nav.call'), value: '+971 56 499 9912', href: 'tel:+971564999912' },
+    { icon: Phone, label: t('nav.call'), value: '+971 52 214 1349', href: 'tel:+971522141349' },
     { icon: Mail, label: t('nav.email'), value: 'info@ffpestcontrol.ae', href: 'mailto:info@ffpestcontrol.ae' },
     { icon: MapPin, label: t('nav.visit'), value: 'Ajman, UAE', href: '/contact' },
   ];
@@ -113,7 +113,7 @@ export default function Navbar() {
               ))}
 
               <a
-                href="tel:+971564999912"
+                href="tel:+971522141349"
                 className={`px-5 py-2 bg-yellow-500 text-black text-sm font-bold rounded-full hover:bg-yellow-400 transition-all hover:shadow-lg hover:shadow-yellow-500/25 ${isRTL ? 'mr-2' : 'ml-2'}`}
               >
                 {t('nav.callNow')}
@@ -178,7 +178,7 @@ export default function Navbar() {
               </motion.div>
               
               <motion.a
-                href="tel:+971564999912"
+                href="tel:+971522141349"
                 onClick={() => setIsMenuOpen(false)}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -186,7 +186,7 @@ export default function Navbar() {
                 className="block mt-4 py-4 bg-yellow-500 text-black font-bold text-center rounded-xl"
               >
                 <Phone className="w-5 h-5 inline mr-2" />
-                +971 56 499 9912
+                +971 52 214 1349
               </motion.a>
             </motion.div>
           </motion.div>

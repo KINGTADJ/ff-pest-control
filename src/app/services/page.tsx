@@ -336,14 +336,14 @@ export default function ServicesPage() {
                   {/* CTAs */}
                   <div className={`flex flex-wrap gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <a 
-                      href="tel:+971564999912" 
+                      href="tel:+971522141349" 
                       className={`flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                     >
                       <Phone className="w-5 h-5" />
                       {language === 'ar' ? 'احصل على عرض سعر' : 'Get Free Quote'}
                     </a>
                     <a 
-                      href="https://wa.me/971564999912" 
+                      href="https://wa.me/971522141349" 
                       className={`flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#1da851] transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                     >
                       <MessageCircle className="w-5 h-5" />
@@ -386,14 +386,14 @@ export default function ServicesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="tel:+971564999912" 
+                href="tel:+971522141349" 
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-yellow-500 text-black font-bold rounded-full hover:bg-yellow-400 transition-colors text-lg"
               >
                 <Phone className="w-6 h-6" />
-                +971 56 499 9912
+                +971 52 214 1349
               </a>
               <a 
-                href="https://wa.me/971564999912" 
+                href="https://wa.me/971522141349" 
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-green-700 font-bold rounded-full hover:bg-gray-100 transition-colors text-lg"
               >
                 <MessageCircle className="w-6 h-6" />

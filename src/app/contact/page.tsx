@@ -5,8 +5,8 @@ import PageLayout from '@/components/PageLayout';
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
 
 const contactInfo = [
-  { icon: Phone, title: 'Phone Numbers', details: ['+971 56 499 9912', '+971 52 214 1349'], action: 'tel:+971564999912', actionText: 'Call Now', color: 'bg-green-500' },
-  { icon: MessageCircle, title: 'WhatsApp', details: ['+971 56 499 9912'], action: 'https://wa.me/971564999912', actionText: 'Chat Now', color: 'bg-[#25D366]' },
+  { icon: Phone, title: 'Phone Numbers', details: ['+971 52 214 1349', '+971 52 214 1349'], action: 'tel:+971522141349', actionText: 'Call Now', color: 'bg-green-500' },
+  { icon: MessageCircle, title: 'WhatsApp', details: ['+971 52 214 1349'], action: 'https://wa.me/971522141349', actionText: 'Chat Now', color: 'bg-[#25D366]' },
   { icon: Mail, title: 'Email', details: ['ffpestcontrol@gmail.com'], action: 'mailto:ffpestcontrol@gmail.com', actionText: 'Send Email', color: 'bg-blue-500' },
   { icon: MapPin, title: 'Address', details: ['Office C1-1F-SF14425', 'Ajman Free Zone, UAE'], action: 'https://maps.google.com/?q=Ajman+Free+Zone', actionText: 'Get Directions', color: 'bg-red-500' },
 ];
@@ -227,11 +227,11 @@ export default function ContactPage() {
                   For emergency pest control services, call us now. We're available 24/7!
                 </p>
                 <div className="space-y-3">
-                  <a href="tel:+971564999912" className="flex items-center gap-3 text-yellow-400 font-bold hover:text-white transition-colors">
+                  <a href="tel:+971522141349" className="flex items-center gap-3 text-yellow-400 font-bold hover:text-white transition-colors">
                     <Phone className="w-5 h-5" />
-                    +971 56 499 9912
+                    +971 52 214 1349
                   </a>
-                  <a href="https://wa.me/971564999912" className="flex items-center gap-3 text-[#25D366] font-bold hover:text-white transition-colors">
+                  <a href="https://wa.me/971522141349" className="flex items-center gap-3 text-[#25D366] font-bold hover:text-white transition-colors">
                     <MessageCircle className="w-5 h-5" />
                     WhatsApp Us
                   </a>

@@ -243,11 +243,11 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="tel:+971564999912" 
+                href="tel:+971522141349" 
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-yellow-500 text-black font-bold rounded-full hover:bg-yellow-400 transition-colors"
               >
                 <Phone className="w-5 h-5" />
-                Call: +971 56 499 9912
+                Call: +971 52 214 1349
               </a>
               <Link 
                 href="/contact"

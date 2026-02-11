@@ -9,7 +9,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 const contactInfo = [
-  { icon: Phone, label: 'Phone', value: '+971 56 499 9912', href: 'tel:+971564999912' },
+  { icon: Phone, label: 'Phone', value: '+971 52 214 1349', href: 'tel:+971522141349' },
   { icon: Mail, label: 'Email', value: 'ffpestcontrol@gmail.com', href: 'mailto:ffpestcontrol@gmail.com' },
   { icon: MapPin, label: 'Location', value: 'Ajman Free Zone, UAE', href: '#' },
   { icon: Clock, label: 'Hours', value: '24/7 Available', href: '#' },
@@ -101,7 +101,7 @@ export default function Contact() {
 
               {/* WhatsApp Button */}
               <motion.a
-                href="https://wa.me/971564999912"
+                href="https://wa.me/971522141349"
                 className="flex items-center justify-center gap-3 p-6 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl text-white font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all shadow-xl shadow-green-500/30"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

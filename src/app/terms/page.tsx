@@ -77,7 +77,7 @@ export default function TermsPage() {
                 <ul className="list-none mt-2 space-y-2">
                   <li><strong>Company:</strong> F & F Pest Control Trading - F.Z.E</li>
                   <li><strong>License No:</strong> 48487</li>
-                  <li><strong>Phone:</strong> +971 56 499 9912</li>
+                  <li><strong>Phone:</strong> +971 52 214 1349</li>
                   <li><strong>Email:</strong> ffpestcontrol@gmail.com</li>
                   <li><strong>Address:</strong> Ajman Free Zone, UAE</li>
                 </ul>

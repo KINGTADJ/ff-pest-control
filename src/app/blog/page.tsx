@@ -182,7 +182,7 @@ export default function BlogPage() {
               Follow us on social media for the latest pest control tips, news, and special offers.
             </p>
             <a 
-              href="https://wa.me/971564999912" 
+              href="https://wa.me/971522141349" 
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#1da851] transition-colors"
             >
               Follow Us on WhatsApp

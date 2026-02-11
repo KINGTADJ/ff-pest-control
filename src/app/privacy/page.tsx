@@ -70,7 +70,7 @@ export default function PrivacyPage() {
                 <h2 className="text-2xl font-bold text-[#0a1a0f] mb-4">5. Contact Us</h2>
                 <p>If you have any questions about this Privacy Policy, please contact us:</p>
                 <ul className="list-none mt-2 space-y-2">
-                  <li><strong>Phone:</strong> +971 56 499 9912</li>
+                  <li><strong>Phone:</strong> +971 52 214 1349</li>
                   <li><strong>Email:</strong> ffpestcontrol@gmail.com</li>
                   <li><strong>Address:</strong> Ajman Free Zone, UAE</li>
                 </ul>

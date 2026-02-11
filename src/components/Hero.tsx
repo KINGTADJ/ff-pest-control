@@ -145,7 +145,7 @@ export default function Hero() {
             {/* CTAs */}
             <div className={`flex flex-wrap items-center gap-2 md:gap-3 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
               <motion.a
-                href="tel:+971564999912"
+                href="tel:+971522141349"
                 className={`group px-4 py-2.5 md:px-6 md:py-3 bg-yellow-500 text-black text-xs md:text-sm font-bold rounded-full relative overflow-hidden ${isRTL ? 'flex-row-reverse' : ''}`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

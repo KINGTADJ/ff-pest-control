@@ -78,11 +78,11 @@ export default function ProductsPage() {
               Professional-grade pest control products designed for instant results. Our MAGIC formula kills pests on contact and provides long-lasting protection.
             </p>
             <a 
-              href="tel:+971564999912" 
+              href="tel:+971522141349" 
               className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-500 text-black font-bold rounded-full hover:bg-yellow-400 transition-colors"
             >
               <Phone className="w-5 h-5" />
-              Order Now: +971 56 499 9912
+              Order Now: +971 52 214 1349
             </a>
           </motion.div>
         </div>
@@ -147,11 +147,11 @@ export default function ProductsPage() {
                   </div>
                   
                   <div className="flex gap-4">
-                    <a href="tel:+971564999912" className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-green-600 text-white font-bold text-sm rounded-full hover:bg-green-700 transition-colors">
+                    <a href="tel:+971522141349" className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-green-600 text-white font-bold text-sm rounded-full hover:bg-green-700 transition-colors">
                       <Phone className="w-4 h-4" />
                       Order Now
                     </a>
-                    <a href="https://wa.me/971564999912?text=Hi, I'm interested in ordering MAGIC products" className="flex-1 flex items-center justify-center gap-2 px-5 py-3 border-2 border-green-600 text-green-600 font-bold text-sm rounded-full hover:bg-green-600 hover:text-white transition-colors">
+                    <a href="https://wa.me/971522141349?text=Hi, I'm interested in ordering MAGIC products" className="flex-1 flex items-center justify-center gap-2 px-5 py-3 border-2 border-green-600 text-green-600 font-bold text-sm rounded-full hover:bg-green-600 hover:text-white transition-colors">
                       <MessageCircle className="w-4 h-4" />
                       WhatsApp
                     </a>
@@ -236,11 +236,11 @@ export default function ProductsPage() {
               Contact us today to order MAGIC pest control products. Available for retail purchase and wholesale distribution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+971564999912" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition-colors">
+              <a href="tel:+971522141349" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition-colors">
                 <Phone className="w-5 h-5" />
-                Call: +971 56 499 9912
+                Call: +971 52 214 1349
               </a>
-              <a href="https://wa.me/971564999912" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#1da851] transition-colors">
+              <a href="https://wa.me/971522141349" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#1da851] transition-colors">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
               </a>
